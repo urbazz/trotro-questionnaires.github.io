@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#ff9500" />
+    <meta name="description" content="Анкета-чек для возврата страховки" />
+    <title>ПравоВозврат — чек-лист ситуации</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="module" crossorigin src="/assets/main-CStt51uJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-BVNeDy4R.css">
+  </head>
+  <body
+    class="min-h-screen bg-[#fff7e8] font-sans text-app-dark"
+    x-data="questionnaire"
+  >
+    <header class="bg-app-orange">
+      <div class="mx-auto max-w-3xl px-4 py-4">
+        <div class="flex items-center gap-3">
+          <a
+            href="../index.html"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-app-dark text-white"
+            aria-label="Все варианты"
+            ><i class="bi bi-arrow-left"></i
+          ></a>
+          <img
+            src="/assets/logo-LgmIUQ__.webp"
+            alt="Логотип ПравоВозврат"
+            class="h-14 w-[76px] object-contain"
+          />
+          <div class="min-w-0 flex-1">
+            <p class="text-lg font-black">ПравоВозврат</p>
+            <p class="text-[10px] leading-4 text-app-dark/70">
+              Юридическая компания по возврату страховок и навязанных услуг
+            </p>
+          </div>
+        </div>
+        <div
+          class="mt-3 grid grid-cols-2 gap-2 text-center text-[11px] font-black"
+        >
+          <a
+            href="tel:+78000000000"
+            class="rounded-app-sm bg-white/60 px-2 py-2"
+            >+7 (800) 000-00-00</a
+          ><a
+            href="tel:+74950000000"
+            class="rounded-app-sm bg-white/60 px-2 py-2"
+            >+7 (495) 000-00-00</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="px-3 py-7 sm:px-4 sm:py-12">
+      <section class="mx-auto max-w-3xl" aria-labelledby="v11-title">
+        <div class="text-center">
+          <p
+            class="text-xs font-black uppercase tracking-[0.18em] text-app-orange"
+          >
+            Экспресс-чек
+          </p>
+          <h1
+            id="v11-title"
+            class="mt-2 text-3xl font-black leading-tight sm:text-4xl"
+          >
+            Проверка возврата страховки
+          </h1>
+          <p class="mx-auto mt-3 max-w-lg text-sm leading-6 text-app-text">
+            Отметьте, что подходит. В конце сформируем обращение для юриста.
+          </p>
+        </div>
+
+        <div
+          class="relative mt-7 overflow-hidden rounded-app border-2 border-app-dark bg-app-surface shadow-[8px_8px_0_#002233]"
+        >
+          <div
+            class="border-b-2 border-dashed border-app-border px-4 py-4 sm:px-6"
+          >
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-black">ЧЕК № 0001</span
+              ><span
+                class="rounded-full bg-app-dark px-3 py-1 text-[11px] font-black text-white"
+                x-text="progressLabel"
+                >0 из 4</span
+              >
+            </div>
+            <div class="mt-3 h-2 overflow-hidden bg-app-line">
+              <div
+                class="h-full bg-app-orange transition-all duration-300"
+                :style="{ width: `${progress}%` }"
+              ></div>
+            </div>
+          </div>
+
+          <div class="p-4 sm:p-6" x-ref="formPanel" x-show="!submitted">
+            <form @submit.prevent="submit" novalidate class="space-y-6">
+              <fieldset x-ref="term" :data-error="errors.term || null">
+                <legend class="flex items-center gap-3 text-lg font-black">
+                  <span class="font-mono text-app-orange">01</span
+                  ><span>Срок оформления</span>
+                </legend>
+                <div class="mt-3 grid gap-2 sm:grid-cols-2">
+                  <template x-for="option in options.terms" :key="option.id"
+                    ><div>
+                      <input
+                        :id="`v11-term-${option.id}`"
+                        name="term"
+                        type="radio"
+                        :value="option.value"
+                        x-model="form.term"
+                      /><label
+                        :for="`v11-term-${option.id}`"
+                        class="app-option !rounded-app-sm"
+                        ><span class="app-option-dot"></span
+                        ><span x-text="option.label"></span
+                      ></label></div
+                  ></template>
+                </div>
+              </fieldset>
+
+              <div class="border-t border-dashed border-app-border"></div>
+              <section
+                x-ref="creditType"
+                :data-error="errors.creditType || null"
+                aria-labelledby="v11-credit-title"
+              >
+                <h2
+                  id="v11-credit-title"
+                  class="flex items-center gap-3 text-lg font-black"
+                >
+                  <span class="font-mono text-app-orange">02</span
+                  ><span>Вид кредита</span>
+                </h2>
+                <label for="v11-credit" class="sr-only">Вид кредита</label>
+                <div class="relative mt-3">
+                  <select
+                    id="v11-credit"
+                    name="credit_type"
+                    class="app-field !rounded-app-sm appearance-none pr-11"
+                    x-model="form.creditType"
+                  >
+                    <option value="">Выберите вариант</option>
+                    <template
+                      x-for="option in options.credits"
+                      :key="option.value"
+                      ><option
+                        :value="option.value"
+                        x-text="option.label"
+                      ></option
+                    ></template></select
+                  ><i
+                    class="bi bi-chevron-down pointer-events-none absolute right-4 top-1/2 -translate-y-1/2"
+                  ></i>
+                </div>
+              </section>
+
+              <div class="border-t border-dashed border-app-border"></div>
+              <fieldset
+                x-ref="refundType"
+                :data-error="errors.refundType || null"
+              >
+                <legend class="flex items-center gap-3 text-lg font-black">
+                  <span class="font-mono text-app-orange">03</span
+                  ><span>Что возвращаем</span>
+                </legend>
+                <p class="mt-1 text-xs text-app-text">
+                  Можно выбрать несколько позиций.
+                </p>
+                <div class="mt-3 space-y-2">
+                  <template x-for="option in options.refunds" :key="option.id"
+                    ><div>
+                      <input
+                        :id="`v11-refund-${option.id}`"
+                        name="refund_type"
+                        type="checkbox"
+                        :value="option.value"
+                        x-model="form.refundType"
+                      /><label
+                        :for="`v11-refund-${option.id}`"
+                        class="app-option !rounded-app-sm"
+                        ><span class="app-option-check"
+                          ><i class="bi bi-check text-xs"></i></span
+                        ><span x-text="option.label"></span
+                        ><span class="ml-auto font-mono text-app-muted"
+                          >□</span
+                        ></label
+                      >
+                    </div></template
+                  >
+                </div>
+              </fieldset>
+
+              <div class="border-t border-dashed border-app-border"></div>
+              <fieldset x-ref="amount" :data-error="errors.amount || null">
+                <legend class="flex items-center gap-3 text-lg font-black">
+                  <span class="font-mono text-app-orange">04</span
+                  ><span>Примерная сумма</span>
+                </legend>
+                <div class="mt-3 grid grid-cols-2 gap-2">
+                  <template x-for="option in options.amounts" :key="option.id"
+                    ><div>
+                      <input
+                        :id="`v11-amount-${option.id}`"
+                        name="amount"
+                        type="radio"
+                        :value="option.value"
+                        x-model="form.amount"
+                      /><label
+                        :for="`v11-amount-${option.id}`"
+                        class="app-option h-full !justify-center !rounded-app-sm !px-2 text-center"
+                        ><span x-text="option.label"></span
+                      ></label></div
+                  ></template>
+                </div>
+              </fieldset>
+
+              <div class="border-t-2 border-dashed border-app-dark"></div>
+              <section aria-labelledby="v11-contact-title">
+                <div class="flex items-center justify-between">
+                  <h2 id="v11-contact-title" class="text-xl font-black">
+                    Контакты
+                  </h2>
+                  <span class="font-mono text-xs font-black text-app-orange"
+                    >ИТОГО</span
+                  >
+                </div>
+                <p class="mt-1 text-xs leading-5 text-app-text">
+                  Для ответа по результатам проверки.
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div>
+                    <label for="v11-situation" class="app-label"
+                      >Комментарий
+                      <span class="font-normal text-app-muted"
+                        >(необязательно)</span
+                      ></label
+                    ><textarea
+                      id="v11-situation"
+                      name="situation"
+                      rows="3"
+                      class="app-field !rounded-app-sm"
+                      placeholder="Что ещё важно знать?"
+                      x-model="form.situation"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label for="v11-name" class="app-label"
+                      >Имя
+                      <span class="font-normal text-app-muted"
+                        >(необязательно)</span
+                      ></label
+                    ><input
+                      id="v11-name"
+                      name="name"
+                      type="text"
+                      class="app-field !rounded-app-sm"
+                      placeholder="Ваше имя"
+                      autocomplete="name"
+                      x-model="form.name"
+                    />
+                  </div>
+                  <div x-ref="phone" :data-error="errors.phone || null">
+                    <label for="v11-phone" class="app-label"
+                      >Телефон <span class="text-app-red">*</span></label
+                    ><input
+                      id="v11-phone"
+                      name="phone"
+                      type="tel"
+                      class="app-field !rounded-app-sm"
+                      placeholder="+7 (___) ___-__-__"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      x-model="form.phone"
+                    />
+                  </div>
+                  <div x-ref="consent" :data-error="errors.consent || null">
+                    <input
+                      id="v11-consent"
+                      name="consent"
+                      type="checkbox"
+                      value="yes"
+                      x-model="form.consent"
+                    /><label
+                      for="v11-consent"
+                      class="app-option !min-h-0 !items-start !rounded-none !border-0 !bg-transparent !p-0"
+                      ><span class="app-option-check mt-0.5"
+                        ><i class="bi bi-check text-xs"></i></span
+                      ><span class="text-xs font-medium leading-5 text-app-text"
+                        >Согласен на обработку данных.
+                        <a href="#consent" class="font-black underline"
+                          >Подробнее</a
+                        ></span
+                      ></label
+                    >
+                  </div>
+                  <button type="submit" class="app-cta !rounded-app-sm">
+                    Отправить чек юристу <i class="bi bi-receipt"></i>
+                  </button>
+                </div>
+              </section>
+            </form>
+          </div>
+
+          <div
+            class="p-7 text-center sm:p-10"
+            x-show="submitted"
+            x-cloak
+            x-transition.opacity
+            x-ref="success"
+            aria-live="polite"
+          >
+            <p class="font-mono text-xs font-black text-app-orange">
+              ЧЕК ПРИНЯТ
+            </p>
+            <h2 class="mt-2 text-2xl font-black">Ответы у юриста</h2>
+            <p class="mt-3 text-sm leading-6 text-app-text">
+              Ожидайте звонок с номера
+              <strong class="text-app-dark">+7 (800) 000-00-00</strong>.
+            </p>
+            <button
+              type="button"
+              class="mt-6 min-h-11 px-4 text-sm font-black underline underline-offset-4"
+              @click="restart"
+            >
+              Новый чек
+            </button>
+          </div>
+        </div>
+        <p
+          id="consent"
+          class="mt-6 text-center text-[11px] leading-5 text-app-muted"
+        >
+          Демонстрационная форма. Юридические тексты и реквизиты необходимо
+          заменить.
+        </p>
+      </section>
+    </main>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f"}' crossorigin="anonymous"></script>
+</body>
+</html>

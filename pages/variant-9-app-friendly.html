@@ -1,0 +1,526 @@
+<!doctype html>
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      name="viewport"
+    />
+    <meta content="#00aaff" name="theme-color" />
+    <meta
+      content="Дружелюбная мобильная анкета по возврату страховки"
+      name="description"
+    />
+    <title>ПравоВозврат — помощник по возврату страховки</title>
+    <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+    <script type="module" crossorigin src="/assets/main-CStt51uJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-BVNeDy4R.css">
+  </head>
+  <body
+    class="min-h-screen bg-[#eef9fe] font-sans text-app-dark"
+    x-data="questionnaire"
+  >
+    <header class="bg-app-brand text-white">
+      <div class="mx-auto max-w-3xl px-4 pb-5 pt-3">
+        <div class="flex min-h-12 items-center justify-between gap-3">
+          <a
+            class="inline-flex min-h-10 items-center gap-2 text-xs font-bold text-white/80"
+            href="../index.html"
+            ><i class="bi bi-arrow-left"></i>Все варианты</a
+          >
+          <span
+            class="rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-black"
+            >App 03 · Помощник</span
+          >
+        </div>
+        <div
+          class="mt-3 flex items-center gap-3 rounded-app bg-white p-3 text-app-dark shadow-app"
+        >
+          <div
+            class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-app-dark"
+          >
+            <img
+              alt="Логотип ПравоВозврат"
+              class="h-14 w-16 object-contain"
+              src="/assets/logo-LgmIUQ__.webp"
+            />
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-lg font-black leading-tight">ПравоВозврат</p>
+            <p class="mt-1 text-[11px] leading-4 text-app-text">
+              Юридическая компания по возврату страховок и навязанных услуг по
+              кредитам
+            </p>
+          </div>
+        </div>
+        <div
+          class="mt-3 grid grid-cols-2 gap-2 text-center text-[11px] font-extrabold"
+        >
+          <a
+            class="rounded-app-sm bg-app-dark/90 px-2 py-2.5"
+            href="tel:+78000000000"
+            ><i class="bi bi-telephone-fill mr-1 text-app-orange"></i>+7 (800)
+            000-00-00</a
+          >
+          <a
+            class="rounded-app-sm bg-app-dark/90 px-2 py-2.5"
+            href="tel:+74950000000"
+            ><i class="bi bi-phone-fill mr-1 text-app-orange"></i>+7 (495)
+            000-00-00</a
+          >
+        </div>
+      </div>
+    </header>
+    <main class="scroll-mt-3 px-3 pb-10 pt-5 sm:px-4" id="form">
+      <section aria-labelledby="v9-title" class="mx-auto max-w-3xl">
+        <div class="flex items-start gap-2.5">
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-app-dark"
+          >
+            <img
+              alt=""
+              class="h-9 w-10 object-contain"
+              src="/assets/logo-LgmIUQ__.webp"
+            />
+          </div>
+          <div
+            class="rounded-app rounded-tl-app-sm border border-app-line bg-app-surface p-4 shadow-appsoft"
+          >
+            <p class="text-xs font-black text-app-brand">Онлайн-помощник</p>
+            <h1 class="mt-1.5 text-2xl font-black leading-tight" id="v9-title">
+              Проверим, можно ли вернуть ваши деньги?
+            </h1>
+            <p class="mt-2 text-sm leading-6 text-app-text">
+              Задам 4 простых вопроса. Отвечайте как помните — точные данные
+              уточнит юрист.
+            </p>
+          </div>
+        </div>
+        <div
+          class="ml-5 h-5 border-l-2 border-dotted border-app-brand/30"
+        ></div>
+        <div
+          class="overflow-hidden rounded-app border border-app-line bg-app-surface shadow-appsoft"
+        >
+          <div class="border-b border-app-line bg-white px-4 py-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold text-app-text"
+                ><i
+                  class="bi bi-lightning-charge-fill mr-1.5 text-app-orange"
+                ></i
+                >Около 1 минуты</span
+              ><span
+                class="text-xs font-black text-app-brand"
+                x-text="progressLabel"
+                >0 из 4</span
+              >
+            </div>
+            <div class="mt-2 h-2 overflow-hidden rounded-full bg-app-line">
+              <div
+                :style="{ width: `${progress}%` }"
+                class="h-full w-0 rounded-full bg-app-brand transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+          <div class="p-4 sm:p-6" x-ref="formPanel" x-show="!submitted">
+            <form @submit.prevent="submit" class="space-y-5" novalidate="">
+              <fieldset :data-error="errors.term || null" x-ref="term">
+                <legend class="mb-3 flex items-start gap-2.5">
+                  <span class="app-step">1</span
+                  ><span
+                    ><span class="block text-base font-black leading-5"
+                      >Как давно оформили страховку?</span
+                    ><span
+                      class="mt-1 block text-xs font-normal leading-5 text-app-text"
+                      >Можно выбрать приблизительно.</span
+                    ></span
+                  >
+                </legend>
+                <div class="flex flex-wrap gap-2">
+                  <div class="flex-1 basis-[46%]">
+                    <input
+                      id="v9-term-1"
+                      name="term"
+                      type="radio"
+                      value="до 30 дней"
+                      x-model="form.term"
+                    /><label
+                      class="app-option !h-full !justify-center !px-2 text-center"
+                      for="v9-term-1"
+                      ><span>До 30 дней</span></label
+                    >
+                  </div>
+                  <div class="flex-1 basis-[46%]">
+                    <input
+                      id="v9-term-2"
+                      name="term"
+                      type="radio"
+                      value="31 день–1 год"
+                      x-model="form.term"
+                    /><label
+                      class="app-option !h-full !justify-center !px-2 text-center"
+                      for="v9-term-2"
+                      ><span>До года</span></label
+                    >
+                  </div>
+                  <div class="flex-1 basis-[46%]">
+                    <input
+                      id="v9-term-3"
+                      name="term"
+                      type="radio"
+                      value="более года"
+                      x-model="form.term"
+                    /><label
+                      class="app-option !h-full !justify-center !px-2 text-center"
+                      for="v9-term-3"
+                      ><span>Больше года</span></label
+                    >
+                  </div>
+                  <div class="flex-1 basis-[46%]">
+                    <input
+                      id="v9-term-4"
+                      name="term"
+                      type="radio"
+                      value="не помню"
+                      x-model="form.term"
+                    /><label
+                      class="app-option !h-full !justify-center !px-2 text-center"
+                      for="v9-term-4"
+                      ><span>Не помню</span></label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <div class="h-px bg-app-line"></div>
+              <section
+                :data-error="errors.creditType || null"
+                aria-labelledby="v9-credit-title"
+                x-ref="creditType"
+              >
+                <div class="mb-3 flex items-start gap-2.5">
+                  <span class="app-step">2</span>
+                  <div>
+                    <h2
+                      class="text-base font-black leading-5"
+                      id="v9-credit-title"
+                    >
+                      Какой это был кредит?
+                    </h2>
+                    <p class="mt-1 text-xs leading-5 text-app-text">
+                      Ничего страшного, если не знаете.
+                    </p>
+                  </div>
+                </div>
+                <label class="sr-only" for="v9-credit">Вид кредита</label>
+                <div class="relative">
+                  <select
+                    class="app-field appearance-none pr-11"
+                    id="v9-credit"
+                    name="credit_type"
+                    x-model="form.creditType"
+                  >
+                    <option value="">Выберите вариант</option>
+                    <option>Потребительский кредит</option>
+                    <option>Автокредит</option>
+                    <option>Ипотека</option>
+                    <option>Кредитная карта или другой кредит</option>
+                    <option>Не знаю</option></select
+                  ><i
+                    class="bi bi-chevron-down pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-app-brand"
+                  ></i>
+                </div>
+              </section>
+              <div class="h-px bg-app-line"></div>
+              <fieldset
+                :data-error="errors.refundType || null"
+                x-ref="refundType"
+              >
+                <legend class="mb-3 flex items-start gap-2.5">
+                  <span class="app-step">3</span
+                  ><span
+                    ><span class="block text-base font-black leading-5"
+                      >За что хотите вернуть деньги?</span
+                    ><span
+                      class="mt-1 block text-xs font-normal leading-5 text-app-text"
+                      >Можно отметить всё подходящее.</span
+                    ></span
+                  >
+                </legend>
+                <div class="space-y-2">
+                  <div>
+                    <input
+                      id="v9-refund-1"
+                      name="refund_type"
+                      type="checkbox"
+                      value="страховка жизни"
+                      x-model="form.refundType"
+                    /><label class="app-option" for="v9-refund-1"
+                      ><span class="app-option-check"
+                        ><i class="bi bi-check text-xs"></i></span
+                      ><span>Страховка жизни или здоровья</span></label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v9-refund-2"
+                      name="refund_type"
+                      type="checkbox"
+                      value="финансовая защита"
+                      x-model="form.refundType"
+                    /><label class="app-option" for="v9-refund-2"
+                      ><span class="app-option-check"
+                        ><i class="bi bi-check text-xs"></i></span
+                      ><span>Финансовая защита</span></label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v9-refund-3"
+                      name="refund_type"
+                      type="checkbox"
+                      value="допуслуги"
+                      x-model="form.refundType"
+                    /><label class="app-option" for="v9-refund-3"
+                      ><span class="app-option-check"
+                        ><i class="bi bi-check text-xs"></i></span
+                      ><span>Сертификат или допуслуга</span></label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v9-refund-4"
+                      name="refund_type"
+                      type="checkbox"
+                      value="не знаю"
+                      x-model="form.refundType"
+                    /><label class="app-option" for="v9-refund-4"
+                      ><span class="app-option-check"
+                        ><i class="bi bi-check text-xs"></i></span
+                      ><span>Помогите определить</span></label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <div class="h-px bg-app-line"></div>
+              <fieldset :data-error="errors.amount || null" x-ref="amount">
+                <legend class="mb-3 flex items-start gap-2.5">
+                  <span class="app-step">4</span
+                  ><span
+                    ><span class="block text-base font-black leading-5"
+                      >Помните примерную сумму?</span
+                    ><span
+                      class="mt-1 block text-xs font-normal leading-5 text-app-text"
+                      >Точность не обязательна.</span
+                    ></span
+                  >
+                </legend>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <input
+                      id="v9-amount-1"
+                      name="amount"
+                      type="radio"
+                      value="до 50 000"
+                      x-model="form.amount"
+                    /><label
+                      class="app-option !justify-center !px-2 text-center"
+                      for="v9-amount-1"
+                      >До 50 тыс.</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v9-amount-2"
+                      name="amount"
+                      type="radio"
+                      value="50–150 000"
+                      x-model="form.amount"
+                    /><label
+                      class="app-option !justify-center !px-2 text-center"
+                      for="v9-amount-2"
+                      >50–150 тыс.</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v9-amount-3"
+                      name="amount"
+                      type="radio"
+                      value="более 150 000"
+                      x-model="form.amount"
+                    /><label
+                      class="app-option !justify-center !px-2 text-center"
+                      for="v9-amount-3"
+                      >Больше 150 тыс.</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v9-amount-4"
+                      name="amount"
+                      type="radio"
+                      value="не помню"
+                      x-model="form.amount"
+                    /><label
+                      class="app-option !justify-center !px-2 text-center"
+                      for="v9-amount-4"
+                      >Не помню</label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <section
+                aria-labelledby="v9-contact-title"
+                class="-mx-4 -mb-4 mt-6 rounded-b-app bg-app-dark p-4 text-white sm:-mx-6 sm:-mb-6 sm:p-6"
+              >
+                <div class="flex items-start gap-3">
+                  <span
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-app-orange text-app-dark"
+                    ><i class="bi bi-chat-dots-fill"></i
+                  ></span>
+                  <div>
+                    <p
+                      class="text-[11px] font-black uppercase tracking-[0.1em] text-app-cyan"
+                    >
+                      Ответ юриста
+                    </p>
+                    <h2 class="mt-0.5 text-xl font-black" id="v9-contact-title">
+                      Оставьте телефон
+                    </h2>
+                  </div>
+                </div>
+                <p class="mt-3 text-xs leading-5 text-white/60">
+                  Номер используется только для связи по этой анкете.
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div>
+                    <label
+                      class="mb-2 block text-sm font-extrabold"
+                      for="v9-situation"
+                      >Расскажите подробнее
+                      <span class="font-normal text-white/40"
+                        >(необязательно)</span
+                      ></label
+                    ><textarea
+                      class="app-field !border-white/10 !bg-white/10 !text-white placeholder:!text-white/35"
+                      id="v9-situation"
+                      name="situation"
+                      placeholder="Напишите своими словами"
+                      rows="3"
+                      x-model="form.situation"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label
+                      class="mb-2 block text-sm font-extrabold"
+                      for="v9-name"
+                      >Имя
+                      <span class="font-normal text-white/40"
+                        >(необязательно)</span
+                      ></label
+                    ><input
+                      autocomplete="name"
+                      class="app-field !border-white/10 !bg-white/10 !text-white placeholder:!text-white/35"
+                      id="v9-name"
+                      name="name"
+                      placeholder="Как к вам обращаться"
+                      type="text"
+                      x-model="form.name"
+                    />
+                  </div>
+                  <div :data-error="errors.phone || null" x-ref="phone">
+                    <label
+                      class="mb-2 block text-sm font-extrabold"
+                      for="v9-phone"
+                      >Телефон <span class="text-app-orange">*</span></label
+                    ><input
+                      autocomplete="tel"
+                      class="app-field !border-white/10 !bg-white/10 !text-white placeholder:!text-white/35"
+                      id="v9-phone"
+                      inputmode="tel"
+                      name="phone"
+                      placeholder="+7 (___) ___-__-__"
+                      type="tel"
+                      x-model="form.phone"
+                    />
+                  </div>
+                  <div
+                    :data-error="errors.consent || null"
+                    class="rounded-app transition"
+                    x-ref="consent"
+                  >
+                    <input
+                      id="v9-consent"
+                      name="consent"
+                      type="checkbox"
+                      value="yes"
+                      x-model="form.consent"
+                    /><label
+                      class="app-option !min-h-0 !items-start !border-0 !bg-transparent !p-0 !text-white/65"
+                      for="v9-consent"
+                      ><span class="app-option-check mt-0.5"
+                        ><i class="bi bi-check text-xs"></i></span
+                      ><span class="text-[11px] font-medium leading-5"
+                        >Даю согласие на обработку данных.
+                        <a
+                          class="font-bold text-white underline decoration-app-brand underline-offset-2"
+                          href="#consent"
+                          >Подробнее</a
+                        ></span
+                      ></label
+                    >
+                  </div>
+                  <button class="app-cta" type="submit">
+                    Получить ответ юриста <i class="bi bi-arrow-right"></i>
+                  </button>
+                  <p class="text-center text-[11px] leading-4 text-white/40">
+                    Предварительная оценка не гарантирует результат.
+                  </p>
+                </div>
+              </section>
+            </form>
+          </div>
+          <div
+            aria-live="polite"
+            class="p-6 text-center sm:p-10"
+            x-cloak=""
+            x-ref="success"
+            x-show="submitted"
+            x-transition.opacity=""
+          >
+            <div
+              class="mx-auto flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-app-dark"
+            >
+              <img
+                alt=""
+                class="h-16 w-[72px] object-contain"
+                src="/assets/logo-LgmIUQ__.webp"
+              />
+            </div>
+            <p class="mt-4 text-xs font-black text-app-brand">Всё готово</p>
+            <h2 class="mt-1 text-2xl font-black">Спасибо за ответы!</h2>
+            <p class="mt-3 text-sm leading-6 text-app-text">
+              Юрист свяжется с вами с номера
+              <strong class="text-app-dark">+7 (800) 000-00-00</strong>.
+            </p>
+            <button
+              @click="restart"
+              class="mt-6 min-h-11 px-4 text-sm font-black text-app-brand underline underline-offset-4"
+              type="button"
+            >
+              Начать заново
+            </button>
+          </div>
+        </div>
+        <p
+          class="mx-auto mt-5 max-w-xl scroll-mt-16 px-2 text-center text-[11px] leading-5 text-app-muted"
+          id="consent"
+        >
+          Демонстрационный текст согласия. Перед публикацией замените реквизиты
+          и юридические документы на реальные.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

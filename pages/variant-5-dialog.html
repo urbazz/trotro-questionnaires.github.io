@@ -1,0 +1,497 @@
+<!doctype html>
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta
+      content="Дружелюбная анкета для возврата страховки по кредиту"
+      name="description"
+    />
+    <title>ПравоВозврат — расскажите о своей ситуации</title>
+    <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+    <script type="module" crossorigin src="/assets/main-CStt51uJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-BVNeDy4R.css">
+  </head>
+  <body class="min-h-screen bg-cream font-sans text-ink" x-data="questionnaire">
+    <div class="border-b border-accent-100 bg-white">
+      <div
+        class="mx-auto flex max-w-5xl items-center justify-between px-4 py-2.5 sm:px-6"
+      >
+        <a
+          class="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-brand-700"
+          href="../index.html"
+          ><i class="bi bi-arrow-left"></i> Все варианты</a
+        >
+        <span class="text-xs font-bold text-accent-700"
+          >Вариант 05 · Диалоговый</span
+        >
+      </div>
+    </div>
+    <header class="bg-white px-4 py-5 sm:px-6">
+      <div
+        class="mx-auto flex max-w-5xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <a class="flex items-center gap-3" href="#form">
+          <span
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-700 text-xl text-white"
+            ><i class="bi bi-arrow-counterclockwise"></i
+          ></span>
+          <span
+            ><span class="block text-xl font-black text-brand-950"
+              >Право<span class="text-accent-500">Возврат</span></span
+            ><span class="block max-w-sm text-xs leading-4 text-slate-500"
+              >Юридическая компания по возврату страховок и навязанных услуг по
+              кредитам</span
+            ></span
+          >
+        </a>
+        <div class="flex flex-wrap gap-x-5 gap-y-2">
+          <a class="phone-link text-brand-800" href="tel:+78000000000"
+            ><i class="bi bi-telephone-fill text-accent-500"></i>+7 (800)
+            000-00-00</a
+          >
+          <a class="phone-link text-brand-800" href="tel:+74950000000"
+            ><i class="bi bi-chat-dots-fill text-accent-500"></i>+7 (495)
+            000-00-00</a
+          >
+        </div>
+      </div>
+    </header>
+    <main class="scroll-mt-4 px-4 py-9 sm:px-6 sm:py-14" id="form">
+      <section aria-labelledby="v5-title" class="mx-auto max-w-3xl">
+        <div class="flex items-start gap-3 sm:gap-4">
+          <span
+            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-500 text-lg text-white"
+            ><i class="bi bi-person-fill"></i
+          ></span>
+          <div
+            class="rounded-3xl rounded-tl-md border border-accent-100 bg-white p-5 sm:p-6"
+          >
+            <p class="text-sm font-extrabold text-accent-700">Здравствуйте!</p>
+            <h1
+              class="mt-2 text-2xl font-black leading-tight text-brand-950 sm:text-4xl"
+              id="v5-title"
+            >
+              Давайте посмотрим, можно ли вернуть деньги за страховку
+            </h1>
+            <p class="mt-3 leading-7 text-slate-600">
+              Здесь всего 4 простых вопроса. Можно отвечать примерно — документы
+              на этом этапе не понадобятся.
+            </p>
+          </div>
+        </div>
+        <div
+          class="my-5 ml-5 h-7 border-l-2 border-dashed border-accent-200 sm:ml-[21px]"
+        ></div>
+        <div
+          class="overflow-hidden rounded-3xl border border-accent-100 bg-white shadow-soft"
+        >
+          <div
+            class="flex items-center gap-4 border-b border-accent-100 bg-accent-50 px-5 py-4 sm:px-7"
+          >
+            <span
+              class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-brand-700"
+              ><i class="bi bi-chat-heart"></i
+            ></span>
+            <div class="h-2 flex-1 overflow-hidden rounded-full bg-white">
+              <div
+                :style="{ width: `${progress}%` }"
+                class="h-full w-0 rounded-full bg-accent-500 transition-all duration-500"
+              ></div>
+            </div>
+            <span
+              class="text-xs font-black text-accent-700"
+              x-text="progressLabel"
+              >0 из 4</span
+            >
+          </div>
+          <div class="p-5 sm:p-7 md:p-9" x-ref="formPanel" x-show="!submitted">
+            <form @submit.prevent="submit" class="space-y-7" novalidate="">
+              <fieldset
+                :data-error="errors.term || null"
+                class="rounded-2xl bg-[#f8faf9] p-4 sm:p-5"
+                x-ref="term"
+              >
+                <legend class="px-1 text-lg font-extrabold text-slate-900">
+                  <span class="mr-2 text-accent-500">1.</span>Давно оформляли
+                  страховку?
+                </legend>
+                <p class="mt-1 px-1 text-sm text-slate-500">
+                  Выберите наиболее близкий вариант.
+                </p>
+                <div class="mt-4 grid gap-2 sm:grid-cols-2">
+                  <div>
+                    <input
+                      id="v5-term-1"
+                      name="term"
+                      type="radio"
+                      value="до 30 дней"
+                      x-model="form.term"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-term-1"
+                      ><span class="option-dot"></span>До 30 дней назад</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-term-2"
+                      name="term"
+                      type="radio"
+                      value="31 день–1 год"
+                      x-model="form.term"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-term-2"
+                      ><span class="option-dot"></span>От месяца до года</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-term-3"
+                      name="term"
+                      type="radio"
+                      value="более года"
+                      x-model="form.term"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-term-3"
+                      ><span class="option-dot"></span>Больше года</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-term-4"
+                      name="term"
+                      type="radio"
+                      value="не помню"
+                      x-model="form.term"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-term-4"
+                      ><span class="option-dot"></span>Не помню</label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <section
+                :data-error="errors.creditType || null"
+                aria-labelledby="v5-credit-title"
+                class="rounded-2xl bg-[#f8faf9] p-4 sm:p-5"
+                x-ref="creditType"
+              >
+                <h2
+                  class="text-lg font-extrabold text-slate-900"
+                  id="v5-credit-title"
+                >
+                  <span class="mr-2 text-accent-500">2.</span>Какой у вас
+                  кредит?
+                </h2>
+                <p class="mt-1 text-sm text-slate-500">
+                  Ничего страшного, если точного варианта нет.
+                </p>
+                <label class="sr-only" for="v5-credit">Вид кредита</label>
+                <div class="relative mt-4">
+                  <select
+                    class="field-control !rounded-xl appearance-none pr-11"
+                    id="v5-credit"
+                    name="credit_type"
+                    x-model="form.creditType"
+                  >
+                    <option value="">Выберите вариант</option>
+                    <option>Потребительский кредит</option>
+                    <option>Автокредит</option>
+                    <option>Ипотека</option>
+                    <option>Кредитная карта или другой кредит</option>
+                    <option>Не знаю</option></select
+                  ><i
+                    class="bi bi-chevron-down pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-accent-600"
+                  ></i>
+                </div>
+              </section>
+              <fieldset
+                :data-error="errors.refundType || null"
+                class="rounded-2xl bg-[#f8faf9] p-4 sm:p-5"
+                x-ref="refundType"
+              >
+                <legend class="px-1 text-lg font-extrabold text-slate-900">
+                  <span class="mr-2 text-accent-500">3.</span>За что хотите
+                  вернуть деньги?
+                </legend>
+                <p class="mt-1 px-1 text-sm text-slate-500">
+                  Отметьте всё, что подходит.
+                </p>
+                <div class="mt-4 grid gap-2">
+                  <div>
+                    <input
+                      id="v5-refund-1"
+                      name="refund_type"
+                      type="checkbox"
+                      value="страховка жизни"
+                      x-model="form.refundType"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-refund-1"
+                      ><span class="option-square"
+                        ><i class="bi bi-check text-xs"></i></span
+                      >Страховка жизни или здоровья</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-refund-2"
+                      name="refund_type"
+                      type="checkbox"
+                      value="финансовая защита"
+                      x-model="form.refundType"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-refund-2"
+                      ><span class="option-square"
+                        ><i class="bi bi-check text-xs"></i></span
+                      >Финансовая защита или коллективная страховка</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-refund-3"
+                      name="refund_type"
+                      type="checkbox"
+                      value="допуслуги"
+                      x-model="form.refundType"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-refund-3"
+                      ><span class="option-square"
+                        ><i class="bi bi-check text-xs"></i></span
+                      >Карта помощи, сертификат или другая услуга</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-refund-4"
+                      name="refund_type"
+                      type="checkbox"
+                      value="не знаю"
+                      x-model="form.refundType"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-refund-4"
+                      ><span class="option-square"
+                        ><i class="bi bi-check text-xs"></i></span
+                      >Пока не знаю — помогите разобраться</label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset
+                :data-error="errors.amount || null"
+                class="rounded-2xl bg-[#f8faf9] p-4 sm:p-5"
+                x-ref="amount"
+              >
+                <legend class="px-1 text-lg font-extrabold text-slate-900">
+                  <span class="mr-2 text-accent-500">4.</span>Помните примерную
+                  сумму?
+                </legend>
+                <p class="mt-1 px-1 text-sm text-slate-500">
+                  Точность сейчас не важна.
+                </p>
+                <div class="mt-4 grid gap-2 sm:grid-cols-2">
+                  <div>
+                    <input
+                      id="v5-amount-1"
+                      name="amount"
+                      type="radio"
+                      value="до 50 000"
+                      x-model="form.amount"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-amount-1"
+                      ><span class="option-dot"></span>До 50 000 ₽</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-amount-2"
+                      name="amount"
+                      type="radio"
+                      value="50–150 000"
+                      x-model="form.amount"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-amount-2"
+                      ><span class="option-dot"></span>50 000–150 000 ₽</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-amount-3"
+                      name="amount"
+                      type="radio"
+                      value="более 150 000"
+                      x-model="form.amount"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-amount-3"
+                      ><span class="option-dot"></span>Больше 150 000 ₽</label
+                    >
+                  </div>
+                  <div>
+                    <input
+                      id="v5-amount-4"
+                      name="amount"
+                      type="radio"
+                      value="не помню"
+                      x-model="form.amount"
+                    /><label
+                      class="option-card !rounded-xl hover:!translate-y-0"
+                      for="v5-amount-4"
+                      ><span class="option-dot"></span>Не помню</label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <section
+                aria-labelledby="v5-contact-title"
+                class="rounded-2xl bg-brand-800 p-5 text-white sm:p-6"
+              >
+                <span
+                  class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-accent-300"
+                  ><i class="bi bi-check-circle-fill"></i> Почти готово</span
+                >
+                <h2 class="mt-2 text-xl font-black" id="v5-contact-title">
+                  Как с вами связаться?
+                </h2>
+                <p class="mt-2 text-sm leading-6 text-brand-100">
+                  Позвоним только по этому обращению и объясним всё без сложных
+                  терминов.
+                </p>
+                <div class="mt-5 space-y-4">
+                  <div>
+                    <label
+                      class="mb-2 block text-sm font-bold"
+                      for="v5-situation"
+                      >Хотите что-то добавить?
+                      <span class="font-normal text-brand-300"
+                        >(необязательно)</span
+                      ></label
+                    ><textarea
+                      class="field-control !rounded-xl !border-white/10 !bg-white/10 !text-white placeholder:!text-brand-300 focus:!border-accent-400 focus:!ring-accent-400/20"
+                      id="v5-situation"
+                      name="situation"
+                      placeholder="Напишите своими словами"
+                      rows="3"
+                      x-model="form.situation"
+                    ></textarea>
+                  </div>
+                  <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label class="mb-2 block text-sm font-bold" for="v5-name"
+                        >Ваше имя
+                        <span class="font-normal text-brand-300"
+                          >(необязательно)</span
+                        ></label
+                      ><input
+                        autocomplete="name"
+                        class="field-control !rounded-xl !border-white/10 !bg-white/10 !text-white placeholder:!text-brand-300 focus:!border-accent-400 focus:!ring-accent-400/20"
+                        id="v5-name"
+                        name="name"
+                        placeholder="Как к вам обращаться"
+                        type="text"
+                        x-model="form.name"
+                      />
+                    </div>
+                    <div :data-error="errors.phone || null" x-ref="phone">
+                      <label class="mb-2 block text-sm font-bold" for="v5-phone"
+                        >Телефон <span class="text-accent-300">*</span></label
+                      ><input
+                        autocomplete="tel"
+                        class="field-control !rounded-xl !border-white/10 !bg-white/10 !text-white placeholder:!text-brand-300 focus:!border-accent-400 focus:!ring-accent-400/20"
+                        id="v5-phone"
+                        inputmode="tel"
+                        name="phone"
+                        placeholder="+7 (___) ___-__-__"
+                        type="tel"
+                        x-model="form.phone"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    :data-error="errors.consent || null"
+                    class="rounded-xl transition"
+                    x-ref="consent"
+                  >
+                    <input
+                      id="v5-consent"
+                      name="consent"
+                      type="checkbox"
+                      value="yes"
+                      x-model="form.consent"
+                    /><label
+                      class="option-card !min-h-0 !items-start !border-0 !bg-transparent !p-0 !text-brand-100 hover:!translate-y-0 hover:!shadow-none"
+                      for="v5-consent"
+                      ><span class="option-square mt-0.5"
+                        ><i class="bi bi-check text-xs"></i></span
+                      ><span
+                        class="text-xs font-medium leading-5 text-brand-200"
+                        >Даю согласие на обработку данных для ответа.
+                        <a
+                          class="font-bold text-white underline decoration-accent-400 underline-offset-2"
+                          href="#consent"
+                          >Прочитать</a
+                        ></span
+                      ></label
+                    >
+                  </div>
+                  <button
+                    class="primary-button !rounded-xl !bg-accent-500 !shadow-none hover:!bg-accent-600"
+                    type="submit"
+                  >
+                    Да, хочу узнать свои варианты
+                    <i class="bi bi-arrow-right"></i>
+                  </button>
+                </div>
+              </section>
+            </form>
+          </div>
+          <div
+            aria-live="polite"
+            class="p-7 text-center sm:p-12"
+            x-cloak=""
+            x-ref="success"
+            x-show="submitted"
+            x-transition.opacity=""
+          >
+            <span
+              class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-100 text-2xl text-accent-700"
+              ><i class="bi bi-chat-heart-fill"></i
+            ></span>
+            <h2 class="mt-5 text-3xl font-black text-brand-950">
+              Спасибо, мы получили ответы
+            </h2>
+            <p class="mx-auto mt-3 max-w-lg leading-7 text-slate-600">
+              Юрист посмотрит их и свяжется с вами с номера
+              <strong class="text-brand-800">+7 (800) 000-00-00</strong>.
+            </p>
+            <button
+              @click="restart"
+              class="mt-6 text-sm font-bold text-brand-700 underline underline-offset-4"
+              type="button"
+            >
+              Ответить заново
+            </button>
+          </div>
+        </div>
+        <p
+          class="mx-auto mt-6 max-w-2xl scroll-mt-6 text-center text-xs leading-5 text-slate-400"
+          id="consent"
+        >
+          Демонстрационный текст согласия: данные используются только для ответа
+          на обращение. Замените реквизиты, согласие и политику на документы
+          вашей компании.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
